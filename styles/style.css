@@ -202,3 +202,8 @@ nav {
 div.row > div {
   margin-bottom: 20px;
 }
+
+#dynamic-parent {
+  font-size: 2em;
+  color: white;
+}
