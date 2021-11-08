@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a website made by **Group 7 Rastaman group** in _IT 004 - Web Systems and Technologies_.
+This is a website made by **Group 7 Rastaman group** in **IT 004 - Web Systems and Technologies**.
 
 ### Tasks
 
