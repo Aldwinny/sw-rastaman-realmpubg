@@ -17,6 +17,11 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <!-- JQuery UI CSS -->
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"
+    />
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="/styles/style.css" />
@@ -82,8 +87,10 @@
             align-items-center
           "
         >
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('head')">
+            <figure
+              title="From stylish caps to sturdy helmets. We have the highest quality available"
+            >
               <figcaption>Head</figcaption>
               <img
                 src="/assets/items/head_milihead.png"
@@ -92,8 +99,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('eye')">
+            <figure title="See the world in style with our eyewear">
               <figcaption>Eyes</figcaption>
               <img
                 src="/assets/items/eyes_punkglasses.png"
@@ -102,8 +109,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('mask')">
+            <figure title="Hide your true identity using our masks">
               <figcaption>Mask</figcaption>
               <img
                 src="/assets/items/mask_gas.png"
@@ -112,8 +119,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('hand')">
+            <figure title="Gloves for a cleaner, better, work">
               <figcaption>Hands</figcaption>
               <img
                 src="/assets/items/hands_combatgloves.png"
@@ -122,8 +129,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('belt')">
+            <figure title="Tighten your pants with passion">
               <figcaption>Belt</figcaption>
               <img
                 src="/assets/items/belt_battle.png"
@@ -132,8 +139,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('torso')">
+            <figure title="The stylish things you wear up there">
               <figcaption>Torso</figcaption>
               <img
                 src="/assets/items/torso_longsleeved.png"
@@ -142,8 +149,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('leg')">
+            <figure title="The stylish things you wear down there">
               <figcaption>Legs</figcaption>
               <img
                 src="/assets/items/legs_baggybr.png"
@@ -152,8 +159,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('feet')">
+            <figure title="The stylish things you step the world with">
               <figcaption>Feet</figcaption>
               <img
                 src="/assets/items/feet_schoolshoesb.png"
@@ -162,8 +169,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('outer')">
+            <figure title="All the high quality garments you'll ever need">
               <figcaption>Outer</figcaption>
               <img
                 src="/assets/items/outer_blackhoodie.png"
@@ -172,8 +179,8 @@
               />
             </figure>
           </a>
-          <a href="#">
-            <figure>
+          <a href="/pages/item.html" onclick="setContext('set')">
+            <figure title="An entire outfit. All in one!">
               <figcaption>Set</figcaption>
               <img
                 src="/assets/items/set_goldrush.png"
@@ -224,11 +231,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -239,5 +242,12 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="/script.js"></script>
+    <script>
+      $(function () {
+        $(document).tooltip();
+      });
+    </script>
   </body>
 </html>
