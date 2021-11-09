@@ -1,5 +1,5 @@
 // Future TODO: Put everything in a SQL database
-let debug = true;
+let debug = false;
 var item_map = {
   head: {
     1: [null, null, "/assets/items/head_beanie.png"],
@@ -175,6 +175,7 @@ function resolveContext() {
     default:
       //head
       document.title = "Caps & Stuff | Realm PUBG";
+      target.innerHTML = generateCardsFrom(item_map.head, null);
   }
 }
 
@@ -186,7 +187,11 @@ function generateCardsFrom(schema, etc) {
 
     constructedString += `<div class="card">
       <img
-        src="${str[2] ?? "/icon/icon.png"}"
+        src="${
+          debug
+            ? str[2] ?? "/icon/icon.png"
+            : resolveLink(str[2] ?? "/icon/icon.png")
+        }"
         alt=""
         class="card-img-top"
       />
@@ -204,8 +209,8 @@ function generateCardsFrom(schema, etc) {
   return constructedString;
 }
 
-function toAbsolute(str) {
-  console.log(str);
+function resolveLink(str) {
+  return ".." + str;
 }
 
 resolveContext();

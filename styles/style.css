@@ -11,7 +11,7 @@ html {
 body {
   margin: 0;
 
-  background: url("/assets/backgrounds/bg_field.png") no-repeat fixed;
+  background: url("../assets/backgrounds/bg_field.png") no-repeat fixed;
   background-size: cover;
 
   font-family: monospace;
