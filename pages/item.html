@@ -44,7 +44,7 @@
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link"
+            <a href="../index.html#shop" class="nav-link"
               ><span class="material-icons">store</span> Shop</a
             >
           </li>
@@ -63,6 +63,28 @@
       </div>
     </nav>
     <content>
+      <div class="shop-form d-flex flex-nowrap flex-column align-items-center">
+        <h2>Welcome to our shop!</h2>
+        <h4>We have good stuff</h4>
+        <form action="#">
+          <fieldset>
+            <label for="item">Select an item</label>
+            <select name="item" id="item">
+              <option>belt</option>
+              <option>eye</option>
+              <option>feet</option>
+              <option>hand</option>
+              <option selected="selected">head</option>
+              <option>leg</option>
+              <option>mask</option>
+              <option>outer</option>
+              <option>set</option>
+              <option>torso</option>
+            </select>
+          </fieldset>
+          <input type="button" value="Apply" onclick="updateContext()" />
+        </form>
+      </div>
       <div
         class="
           d-flex
@@ -113,11 +135,8 @@
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -128,6 +147,13 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="../script.js"></script>
+    <script>
+      function updateContext() {
+        setContext(document.getElementById("item").value);
+        resolveContext();
+      }
+    </script>
   </body>
 </html>
