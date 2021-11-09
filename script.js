@@ -1,5 +1,14 @@
 // Future TODO: Put everything in a SQL database
 let debug = false;
+var level = {
+  normal: "rgb(109, 245, 116)",
+  rare: "rgb(240, 176, 57)",
+  epic: "rgb(209, 57, 240)",
+  legend: "rgb(221, 211, 76)",
+};
+
+// TODO: Schema from [title, desc, link] --> [title, level, link]
+
 var item_map = {
   head: {
     1: [null, null, "/assets/items/head_beanie.png"],
@@ -197,10 +206,7 @@ function generateCardsFrom(schema, etc) {
       />
       <div class="card-body">
         <h4 class="card-title">${str[0] ?? "Card title"}</h4>
-        <h5 class="card-text">${
-          str[1] ??
-          "Card description is written here is a long, understandable manner."
-        }</h5>
+        <h5 class="card-text">${str[1] ?? ""}</h5>
         ${etc ?? '<a href="#" class="btn btn-primary">Go there</a>'}
       </div>
     </div>`;

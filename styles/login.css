@@ -7,6 +7,10 @@
   background-color: #eee;
 }
 
+form label {
+  margin: 10px auto;
+}
+
 form input {
   width: 70%;
 }
