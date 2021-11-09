@@ -1,0 +1,28 @@
+.login {
+  margin: 40vh 20%;
+  border-radius: 1rem;
+
+  padding: 3em 3em 4em 3em;
+
+  background-color: #eee;
+}
+
+form input {
+  width: 70%;
+}
+
+form img {
+  width: 60%;
+}
+
+@media only screen and (max-width: 700px) {
+  .login {
+    margin: 40vh 0;
+
+    padding: 1em 1em 3em 1em;
+  }
+
+  form input {
+    width: 80%;
+  }
+}

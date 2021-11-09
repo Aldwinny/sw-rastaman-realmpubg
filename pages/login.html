@@ -26,6 +26,7 @@
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
     <title>Login | Realm PUBG</title>
   </head>
   <body>
@@ -60,8 +61,17 @@
       <div class="login">
         <form
           name="details"
-          class="d-flex align-items-start justify-content-center"
-        ></form>
+          class="d-flex flex-column align-items-center justify-content-center"
+        >
+          <img src="../assets/icon/icon+name.png" class="img-fluid" />
+          <label>Login:</label
+          ><input type="text" placeholder="Enter username or email" />
+          <label>Password: </label
+          ><input type="password" placeholder="Enter password" />
+          <div class="btn-group mr-1">
+            <input type="submit" />
+          </div>
+        </form>
       </div>
     </content>
     <footer class="page-footer">
