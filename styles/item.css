@@ -31,3 +31,26 @@
 
   align-self: center;
 }
+
+.shop-form {
+  background-color: rgb(0, 0, 0, 0.5);
+  padding: 4vw 0;
+}
+
+.shop-form h2 {
+  color: white;
+  font-size: 4vw;
+  font-size: clamp(1em, 4vw, 2em);
+}
+
+.shop-form h4 {
+  color: white;
+  font-size: 1em;
+  font-size: clamp(1em, 3vw, 1.7em);
+}
+
+.shop-form label {
+  color: white;
+  font-size: 1em;
+  font-size: clamp(1em, 3vw, 1.2em);
+}
