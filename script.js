@@ -13,11 +13,15 @@ function resolveContext() {
   switch (context) {
     case "eye":
       document.title = "Eye Accessories | Realm PUBG";
-      target.innerHTML = "EYE";
+      target.innerHTML = `<content>
+        <div></div>
+      </content>`;
       break;
     case "mask":
       document.title = "Masks | Realm PUBG";
-      target.innerHTML = "MASK";
+      //   target.innerHTML = `<ul>
+      //   <li><a>HEHEHHEH</a></li>
+      // </ul>`;
       break;
     case "hand":
       document.title = "Hand garments | Realm PUBG";
