@@ -1,3 +1,15 @@
+// Future TODO: Put everything in a SQL database
+var item_map = {
+  head: {
+    1: [null, null, "/assets/items/set_aviator.png"],
+    2: [null, null, "/assets/items/set_blackschool.png"],
+    3: [null, null, "/assets/items/set_blueschool.png"],
+    4: [null, null, "/assets/items/set_aviator.png"],
+    5: [null, null, "/assets/items/set_aviator.png"],
+    6: [null, null, "/assets/items/set_aviator.png"],
+  },
+};
+
 function setContext(context) {
   localStorage.setItem("args", context);
 }
@@ -961,9 +973,37 @@ function resolveContext() {
       break;
     case "set":
       document.title = "Sets | Realm PUBG";
-      target.innerHTML = `        <div class="card">
+      target.innerHTML = ``;
+      break;
+    default:
+      //head
+      document.title = "Caps & Stuff | Realm PUBG";
+  }
+}
+
+function generateCardFrom(src, title, description, etc) {
+  return `<div class="card">
+  <img
+    src="${src ?? "/icon/icon.png"}"
+    alt=""
+    class="card-img-top"
+  />
+  <div class="card-body">
+    <h4 class="card-title">${title ?? "Card title"}</h4>
+    <h5 class="card-text">${
+      description ??
+      "Card description is written here is a long, understandable manner."
+    }</h5>
+    ${etc ?? '<a href="#" class="btn btn-primary">Go there</a>'}
+  </div>
+</div>`;
+}
+
+resolveContext();
+
+/* <div class="card">
       <img
-        src="/assets/items/set_aviator.png"
+        src=""
         alt=""
         class="card-img-top"
       />
@@ -1085,12 +1125,4 @@ function resolveContext() {
         <h5 class="card-text">some quick example text..</h5>
         <a href="#" class="btn btn-primary">Go there</a>
       </div>
-    </div>`;
-      break;
-    default:
-      //head
-      document.title = "Caps & Stuff | Realm PUBG";
-  }
-}
-
-resolveContext();
+    </div> */
