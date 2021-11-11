@@ -207,7 +207,7 @@ function generateCardsFrom(schema, etc) {
       <div class="card-body">
         <h4 class="card-title">${str[0] ?? "Card title"}</h4>
         <h5 class="card-text">${str[1] ?? ""}</h5>
-        ${etc ?? '<a href="#" class="btn btn-primary">Go there</a>'}
+        ${etc ?? '<a href="#" class="btn btn-primary">$10.00</a>'} 
       </div>
     </div>`;
   }
