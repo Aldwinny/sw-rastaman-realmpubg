@@ -24,12 +24,12 @@ i<?php
             header("location: /pages/edit.php?err=Missing Credentials!");
             exit();
         } else {
-            $res = mysqli_fetch_array(Account::search($email));
+            $res = mysqli_fetch_array(Account::search($email)); //fetches an account with the same email as you
             $info = Account::get($_SESSION['id']);
 
             if ($info['password'] == $pass) {
-                if ($res['id'] !== $info['id']) {
-                    header('location: /pages/edit.php?err=email already in use!');
+                if ($res['id'] !== $info['id'] and !empty($res)) {
+                    header("location: /pages/edit.php?err=email already in use by another account!");
                     exit();
                 } else {
                     Account::update($_SESSION['id'], $fname, $lname, $email, $contact, $address, $pass);

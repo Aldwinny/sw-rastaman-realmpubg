@@ -51,14 +51,20 @@ if (!isset($_SESSION['email'])) {
     </nav>
     <main>
         <div class="login information d-flex flex-column">
-            <p>I am <span><?php echo "$_SESSION[fname] $_SESSION[lname]"; ?></span></p>
-            <p>my email and contact is <span><?php echo "$_SESSION[email] $_SESSION[contact]"; ?></span></p>
-            <p>my address is <span><?php echo "$_SESSION[address]"; ?></span></p>
+            <h4>Hello, <span><?php echo "$_SESSION[fname] $_SESSION[lname]"; ?>!</span>
+            </h4>
+            <h5>Welcome to Realm Pubg</h5><br>
+            <h4>Here's your information:</h4>
+            <p>email: <span><?php echo "$_SESSION[email]"; ?></span></p>
+            <p>contact: <span><?php echo "$_SESSION[contact]"; ?></span></p>
+            <p>home address: <span><?php echo "$_SESSION[address]"; ?></span></p>
 
-            <div class="d-flex justify-content-around">
-                <button class="btn btn-success" onclick="window.location.href='/index.php#shop'">Shop now!</button>
+            <button class="btn btn-success" onclick="window.location.href='/index.php#shop'">Shop now!</button>
+            <hr>
+            <h4>Account Management</h4>
+            <br>
+            <div class="d-flex justify-content-around flex-wrap">
                 <button class="btn btn-warning" onclick="window.location.href='/services/logout.php'">Logout</button>
-
                 <button class="btn btn-info" onclick="window.location.href='/pages/edit.php'">Edit Credentials</button>
                 <button class="btn btn-danger"
                     onclick="window.location.href='/services/logout.php?delete&id=<?php echo $_SESSION['id'] ?>'">Delete

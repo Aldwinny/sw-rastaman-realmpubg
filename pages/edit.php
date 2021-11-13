@@ -2,9 +2,6 @@
 
 include '../services/db.php';
 
-if (isset($_POST['fname'])) {
-}
-
 if (isset($_SESSION['email'])) {
     $acc = Account::get($_SESSION['id']);
 

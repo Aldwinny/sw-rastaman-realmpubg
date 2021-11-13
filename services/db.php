@@ -40,7 +40,7 @@ class Account
     {
         $link = db_init();
 
-        mysqli_query($link, "UPDATE accounts SET firstname=$firstname, lastname=$lastname, email=$email, contact=$contact, address=$address WHERE id=$id AND password=$pass");
+        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address' WHERE `id`='$id' AND `password`='$pass'");
     }
 
     static function get($id)
