@@ -56,7 +56,7 @@ if (isset($_SESSION['email'])) {
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
                     <a href="/pages/me.php" class="nav-link"><span
-                            class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
+                            class="material-icons">account_circle</span><?php echo " $_SESSION[fname]" ?></a>
                     <?php } else { ?>
                     <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
                         /

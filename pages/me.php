@@ -43,8 +43,8 @@ if (!isset($_SESSION['email'])) {
                     <a href="/index.php#shop" class="nav-link"><span class="material-icons">store</span> Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/me.php" class="nav-link"><span
-                            class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
+                    <a href="/pages/me.php" class="nav-link"><span class="material-icons">account_circle</span>
+                        <?php echo " $_SESSION[fname]" ?></a>
                 </li>
             </ul>
         </div>
