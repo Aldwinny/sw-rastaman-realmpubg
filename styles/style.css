@@ -75,15 +75,11 @@ nav {
   color: #fff;
 }
 
-.nav-link:hover > .material-icons {
-  color: #fff;
-}
-
-.nav-link > .material-icons {
-  transform: translate(-2px, 1vh);
+.material-icons {
   font-size: 1.2em;
   font-size: clamp(1.4em, 3vw, 1.4em);
-  line-height: 0;
+  display: inline;
+  vertical-align: middle;
 }
 
 .head-card {
