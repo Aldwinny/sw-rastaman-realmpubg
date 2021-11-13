@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("location: login.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,12 +20,14 @@ session_start();
     <link rel="icon" href="/assets/icon/icon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <!-- JQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
     <title>Login | Realm PUBG</title>
 </head>
 
@@ -35,26 +43,30 @@ session_start();
                     <a href="/index.php#shop" class="nav-link"><span class="material-icons">store</span> Shop</a>
                 </li>
                 <li class="nav-item">
-                    <?php if (isset($_SESSION['email'])) { ?>
-                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
-                    <?php } else { ?>
-                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login /
-                            Register</a>
-                    <?php }  ?>
+                    <a href="/pages/me.php" class="nav-link"><span
+                            class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
                 </li>
             </ul>
         </div>
     </nav>
     <main>
-        <?php if (isset($_SESSION['email'])) { ?>
-            <p style="color:white">I am <?php echo "$_SESSION[fname] $_SESSION[lname]"; ?></p>
-            <p style="color:white">my email and contact is <?php echo "$_SESSION[email] $_SESSION[contact]"; ?></p>
-            <p style="color:white">my address is <?php echo "$_SESSION[address]"; ?></p>
-        <?php } else { ?>
-            <p> Are you lost? </p>
-        <?php } ?>
+        <div class="login information d-flex flex-column">
+            <p>I am <span><?php echo "$_SESSION[fname] $_SESSION[lname]"; ?></span></p>
+            <p>my email and contact is <span><?php echo "$_SESSION[email] $_SESSION[contact]"; ?></span></p>
+            <p>my address is <span><?php echo "$_SESSION[address]"; ?></span></p>
+
+            <div class="d-flex justify-content-around">
+                <button class="btn btn-success" onclick="window.location.href='/index.php#shop'">Shop now!</button>
+                <button class="btn btn-warning" onclick="window.location.href='/services/logout.php'">Logout</button>
+
+                <button class="btn btn-info" onclick="window.location.href='/pages/edit.php'">Edit Credentials</button>
+                <button class="btn btn-danger"
+                    onclick="window.location.href='/services/logout.php?delete&id=<?php echo $_SESSION['id'] ?>'">Delete
+                    Account</button>
+            </div>
+        </div>
     </main>
-    <footer class="page-footer">
+    <footer class=" page-footer">
         <!-- TODO: ADD FOOTER -->
         <div class="container">
             <div class="row">
@@ -92,9 +104,15 @@ session_start();
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
     <script src="../script.js"></script>
 </body>
 

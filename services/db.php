@@ -22,11 +22,11 @@ function validate($data)
 class Account
 {
 
-    static function create($firstname, $lastname, $email, $contact, $address)
+    static function create($firstname, $lastname, $email, $pass, $contact, $address)
     {
         $link = db_init();
 
-        mysqli_query($link, "INSERT INTO accounts VALUES(NULL, $firstname, $lastname, $email, $contact, $address)");
+        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, '$firstname', '$lastname', '$email', '$pass', '$contact', '$address')");
     }
 
     static function delete($id)
@@ -36,11 +36,11 @@ class Account
         mysqli_query($link, "DELETE FROM accounts WHERE id=$id");
     }
 
-    static function update($id, $firstname, $lastname, $email, $contact, $address)
+    static function update($id, $firstname, $lastname, $email, $contact, $address, $pass)
     {
         $link = db_init();
 
-        mysqli_query($link, "UPDATE accounts SET firstname=$firstname, lastname=$lastname, email=$email, contact=$contact, address=$address WHERE id=$id");
+        mysqli_query($link, "UPDATE accounts SET firstname=$firstname, lastname=$lastname, email=$email, contact=$contact, address=$address WHERE id=$id AND password=$pass");
     }
 
     static function get($id)
@@ -63,6 +63,14 @@ class Account
     {
         $link = db_init();
         $query = "SELECT * FROM accounts WHERE email='$email' AND password='$pass'";
+
+        return mysqli_query(db_init(), $query);
+    }
+
+    static function search($email)
+    {
+        $link = db_init();
+        $query = "SELECT * FROM accounts WHERE email='$email'";
 
         return mysqli_query(db_init(), $query);
     }

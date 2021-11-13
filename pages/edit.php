@@ -1,5 +1,21 @@
 <?php
-session_start();
+
+include '../services/db.php';
+
+if (isset($_POST['fname'])) {
+}
+
+if (isset($_SESSION['email'])) {
+    $acc = Account::get($_SESSION['id']);
+
+    $fname = $acc['firstname'];
+    $lname = $acc['lastname'];
+    $email = $acc['email'];
+    $contact = $acc['contact'];
+    $address = $acc['address'];
+} else {
+    header('login.php?err=You are not logged in!');
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +37,7 @@ session_start();
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
     <title>Login | Realm PUBG</title>
 </head>
 
@@ -36,6 +53,10 @@ session_start();
                     <a href="/index.php#shop" class="nav-link"><span class="material-icons">store</span> Shop</a>
                 </li>
                 <li class="nav-item">
+                    <a href="/pages/aboutus.php" class="nav-link">
+                        <span class="material-icons">groups</span> Company</a>
+                </li>
+                <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
                     <a href="/pages/me.php" class="nav-link"><span
                             class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
@@ -48,6 +69,44 @@ session_start();
             </ul>
         </div>
     </nav>
+    <main>
+        <div class="login">
+            <form action="/services/edit.php" class="d-flex flex-column align-items-center" method="POST">
+                <img src="/assets/icon/icon+name.png" class="img-fluid" />
+                <br>
+                <p>You are editing your credentials</p>
+                <?php if (isset($_GET["err"])) {
+                    echo '<div class="err-msg">' . $_GET["err"] . '</div>';
+                } ?>
+                <div class="form-group">
+                    <label>First name:</label>
+                    <input name="fname" class="form-control" type="text" placeholder="Enter first name"
+                        value="<?php echo $fname ?>" />
+                    <label>Last name:</label>
+                    <input name="lname" class="form-control" type="text" placeholder="Enter last name"
+                        value="<?php echo $lname ?>" />
+                </div>
+                <div class="form-group">
+                    <label>Email Address:</label>
+                    <input name="email" class="form-control" type="email" placeholder="Enter Email Address"
+                        value="<?php echo $email ?>" />
+                    <label>Contact:</label>
+                    <input name="contact" class="form-control" type="contact" placeholder="Enter Contact"
+                        value="<?php echo $contact ?>" />
+                    <label>Address:</label>
+                    <input name="address" class="form-control" type="address" placeholder="Enter Address"
+                        value="<?php echo $address ?>" />
+                </div>
+                <div class="form-group">
+                    <label>Password:</label><br>
+                    <input name="password" class="form-control" type="password"
+                        placeholder="Enter your password to confirm!" />
+                </div>
+                <br>
+                <button type="submit" class="btn btn-danger">Apply changes</button>
+            </form>
+        </div>
+    </main>
     <footer class="page-footer">
         <!-- TODO: ADD FOOTER -->
         <div class="container">

@@ -13,7 +13,8 @@ session_start();
     <link rel="icon" href="./assets/icon/icon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <!-- JQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
 
@@ -31,7 +32,8 @@ session_start();
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="/pages/item.php" class="nav-link" onclick="setContext('head')"><span class="material-icons">store</span> Shop</a>
+                    <a href="/pages/item.php" class="nav-link" onclick="setContext('head')"><span
+                            class="material-icons">store</span> Shop</a>
                 </li>
                 <li class="nav-item">
                     <a href="/pages/aboutus.php" class="nav-link">
@@ -39,10 +41,12 @@ session_start();
                 </li>
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
-                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
+                    <a href="/pages/me.php" class="nav-link"><span
+                            class="material-icons">account_circle</span><?php echo $_SESSION['fname'] ?></a>
                     <?php } else { ?>
-                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login /
-                            Register</a>
+                    <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
+                        /
+                        Register</a>
                     <?php }  ?>
                 </li>
             </ul>
@@ -171,16 +175,18 @@ session_start();
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="./script.js"></script>
     <script>
-        $(function() {
-            $(document).tooltip();
-        });
+    $(function() {
+        $(document).tooltip();
+    });
     </script>
 </body>
 
