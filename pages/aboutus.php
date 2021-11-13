@@ -30,8 +30,8 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg">
-      <a href="../index.html" class="navbar-brand"
-        ><img src="../assets/icon/icon+name.png"
+      <a href="/index.php" class="navbar-brand"
+        ><img src="/assets/icon/icon+name.png"
       /></a>
       <button
         class="navbar-toggler"
@@ -44,12 +44,12 @@
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a href="../index.html#shop" class="nav-link"
+            <a href="/index.php#shop" class="nav-link"
               ><span class="material-icons">store</span> Shop</a
             >
           </li>
           <li class="nav-item">
-            <a href="../pages/login.html" class="nav-link"
+            <a href="/pages/login.php" class="nav-link"
               ><span class="material-icons">account_circle</span> Login /
               Register</a
             >
@@ -74,9 +74,9 @@
             </p>
             <h6 class="text-uppercase font-weight-bold">😃Find us on:</h6>
             <div class="d-flex socmed">
-              <a><img src="../assets/icon/logo_fb.png" alt="facebook" /></a>
-              <a><img src="../assets/icon/logo_twitter.png" alt="twitter" /></a>
-              <a><img src="../assets/icon/logo_ig.png" alt="instagram" /></a>
+              <a><img src="/assets/icon/logo_fb.png" alt="facebook" /></a>
+              <a><img src="/assets/icon/logo_twitter.png" alt="twitter" /></a>
+              <a><img src="/assets/icon/logo_ig.png" alt="instagram" /></a>
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12">
