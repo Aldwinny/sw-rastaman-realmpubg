@@ -211,3 +211,48 @@ div.row > div {
   font-size: 2em;
   color: white;
 }
+
+/* Effective */
+
+main.about-section {
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1vw;
+  text-align: center;
+  color: #fff;
+}
+
+main.about-section > div:first-child {
+  padding: 30px;
+}
+
+main.about-section .card {
+  padding: 20px;
+  background-color: rgba(95, 168, 86);
+  width: 20em;
+  box-shadow: 0 0 20px 5px #000;
+  margin: 2vw;
+  border-radius: 20px;
+
+  color: #000;
+
+  transition-duration: 0.5s;
+}
+
+main.about-section img {
+  width: 100%;
+  align-self: center;
+}
+
+main.about-section .card:hover {
+  box-shadow: 0 0 50px 10px #fff;
+  color: #fff;
+}
+
+main.about-section > h2 {
+  margin: 3vh 0 1vh 0;
+}
+
+.title {
+  color: grey;
+}

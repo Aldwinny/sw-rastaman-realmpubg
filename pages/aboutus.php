@@ -48,6 +48,86 @@ session_start();
             </ul>
         </div>
     </nav>
+    <main class="about-section">
+        <div>
+            <h1>About Us Page</h1>
+            <p>RASTAMAN2022</p>
+            <p>The online marketplace is developed and published by RASTAMAN Inc. inspired by PUBG
+                Battle Royale. REALM PUBG creative direction led to the development of an online system. In the system,
+                players can choose from a variety of scavenging skins for weapons and equipment to equip in-game. The
+                website contains systems of searching, purchasing, checking out, and convenient way to give players
+                ultimate experience regarding service and choosing products that best promotes the game.
+
+                In just one click away, Realm PUBG website will fully serve your needs executing various products to
+                choose from. Over 1million+ players made Realm PUBG's history grow and become the outstanding website
+                who can give the best experience when it comes to online transactions.
+            </p>
+        </div>
+
+        <h2>Our Team</h2>
+        <div class="d-flex flex-wrap flex-row justify-content-around">
+            <div class="card">
+                <img class="img-fluid card-img-top" src="/assets/company/Jem.jpg" alt="Jem">
+                <div class="card-body">
+                    <h2>Jemelyn Cagalawan</h2>
+                    <p class="card-title">CEO & Founder</p>
+                    <p class="card-text">I am thrilled to be here, and I’m excited about many of the things my
+                        team and I have been working on in the near future. Over the past two years I was
+                        SVP and General Manager of the whole team in PUBJE , which followed PUBJE’s purchase of
+                        NitroSecurity, where I was
+                        CEO.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="img-fluid card-img-top" src="/assets/company/Nica.jpg" alt="Nica">
+                <div class="card-body">
+                    <h2>Danica Aquino</h2>
+                    <p class="card-title">Business Manager</p>
+                    <p class="card-text">Effective business manager with 2+ years of experience. Skilled in
+                        marketing and financial management. Seeking to
+                        increase profitability by 35% at PowerPuff Corporation. At Hex National Group, raised
+                        profits 35% in 2 years by controlling costs through
+                        directed employee idea programs at all business levels and strategic product development.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="img-fluid card-img-top" src="/assets/company/Aldwin.jpg" alt="Aldwin">
+                <div class="card-body">
+                    <h2>Aldwin Dennis Reyes</h2>
+                    <p class="card-title">Software Engineer</p>
+                    <p class="card-text">Sits infront of the computer and does the magic. I make coffee for my higher
+                        ups, write documents and spreadsheets. I prepare presentations to be used in meetings. I also
+                        help convert the design provided to me into websites and mobile applications.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="img-fluid card-img-top" src="/assets/company/Arjohn.png" alt="Arjohn">
+                <div class="card-body">
+                    <h2>Arjohn Malabanan</h2>
+                    <p class="card-title">Assistant Manager</p>
+                    <p class="card-text">The Assistant Manager of Realm Pubg. I always support my Manager
+                        thoughts
+                        even though it is wrong. I love this position so I really work hard in this company.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="img-fluid card-img-top" src="/assets/company/Brian.jpg" alt="Brian">
+                <div class="card-body">
+                    <h2>Brian Llever</h2>
+                    <p class="card-title">Art Director</p>
+                    <p class="card-text">Art director should have a well-planned procedure for generating and
+                        executing the project. The mechanics aren't as crucial as the fact that you created a system
+                        that works. Having said that, there are a few elements that should be included in the
+                        workflow
+                        of every professional art director. </p>
+                </div>
+            </div>
+        </div>
+    </main>
     <footer class="page-footer">
         <!-- TODO: ADD FOOTER -->
         <div class="container">
