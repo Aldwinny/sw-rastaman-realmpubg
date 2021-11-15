@@ -2,7 +2,17 @@
 
 include '../services/db.php';
 
-if (isset($_SESSION['email'])) {
+if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
+    $admin = true;
+    $acc = Account::get($_GET['id']);
+
+    $fname = $acc['firstname'];
+    $lname = $acc['lastname'];
+    $email = $acc['email'];
+    $contact = $acc['contact'];
+    $address = $acc['address'];
+} else if (isset($_SESSION['email'])) {
+    $admin = false;
     $acc = Account::get($_SESSION['id']);
 
     $fname = $acc['firstname'];
@@ -68,14 +78,38 @@ if (isset($_SESSION['email'])) {
     </nav>
     <main>
         <div class="login">
-            <form action="/services/edit.php" class="d-flex flex-column align-items-center" method="POST">
+
+            <form action="<?php if ($admin) { ?>/services/edit.php?id=<?php echo $_GET['id'];
+                                                                    } else { ?>/services/edit.php<?php } ?>"
+                class="d-flex flex-column align-items-center" method="POST">
                 <img src="/assets/icon/icon+name.png" class="img-fluid" />
                 <br>
-                <p>You are editing your credentials</p>
+                <p>You are editing <?php if ($admin and $_SESSION['id'] != $_GET['id']) {
+                                        echo "$fname" . "'s";
+                                    } else {
+                                        echo 'your';
+                                    } ?>
+                    credentials</p>
+                <?php
+                if ($admin and Account::getAccess($_GET['id'])) {
+                    echo '<div class="note-msg">This person has administrator priviledges!</div>';
+                } else if (!$admin && Account::getAccess($_SESSION['id'])) {
+                    echo '<div class="note-msg">You have administrator priviledges!</div>';
+                }
+
+
+                ?>
                 <?php if (isset($_GET["err"])) {
                     echo '<div class="err-msg">' . $_GET["err"] . '</div>';
                 } ?>
                 <div class="form-group">
+                    <?php if ($admin) {
+                    ?>
+                    <label>Id: </label>
+                    <input name="id" class="form-control" type="text" placeholder="Enter ID"
+                        value="<?php echo $_GET['id'] ?>" disabled />
+                    <?php
+                    } ?>
                     <label>First name:</label>
                     <input name="fname" class="form-control" type="text" placeholder="Enter first name"
                         value="<?php echo $fname ?>" />
@@ -94,13 +128,28 @@ if (isset($_SESSION['email'])) {
                     <input name="address" class="form-control" type="address" placeholder="Enter Address"
                         value="<?php echo $address ?>" />
                 </div>
+                <?php if ($admin) { ?>
                 <div class="form-group">
                     <label>Password:</label><br>
                     <input name="password" class="form-control" type="password"
-                        placeholder="Enter your password to confirm!" />
-                </div>
-                <br>
-                <button type="submit" class="btn btn-danger">Apply changes</button>
+                        placeholder="<?php echo 'Enter new password or leave empty to keep old' ?>" /><br>
+                    <div class="form-check">
+                        <input name="admin" type="checkbox" value="1" class="form-check-input" style="position:initial"
+                            <?php if (Account::getAccess($_GET['id'])) {
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?>>
+                        <label class="form-check-label">Admin priviledge</label>
+                    </div>
+                    <?php } else { ?>
+
+                    <div class="form-group">
+                        <label>Password:</label><br>
+                        <input name="password" class="form-control" type="password"
+                            placeholder="Enter your password to confirm!" />
+                    </div>
+                    <?php } ?>
+                    <br>
+                    <button type="submit" class="btn btn-danger">Apply changes</button>
             </form>
         </div>
     </main>

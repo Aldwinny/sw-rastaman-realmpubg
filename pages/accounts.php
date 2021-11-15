@@ -6,6 +6,10 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+if (!Account::getAccess($_SESSION['id'])) {
+    header("location: me.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,45 +44,72 @@ if (!isset($_SESSION['email'])) {
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="/index.php#shop" class="nav-link"><span class="material-icons">store</span> Shop</a>
+                    <a href="/pages/item.php" class="nav-link" onclick="setContext('head')"><span
+                            class="material-icons">store</span> Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/me.php" class="nav-link"><span class="material-icons">account_circle</span>
-                        <?php echo " $_SESSION[fname]" ?></a>
+                    <a href="/pages/aboutus.php" class="nav-link">
+                        <span class="material-icons">groups</span> Company</a>
+                </li>
+                <li class="nav-item">
+                    <?php if (isset($_SESSION['email'])) { ?>
+                    <a href="/pages/me.php" class="nav-link"><span
+                            class="material-icons">account_circle</span><?php echo " $_SESSION[fname]" ?></a>
+                    <?php } else { ?>
+                    <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
+                        /
+                        Register</a>
+                    <?php }  ?>
                 </li>
             </ul>
         </div>
     </nav>
-    <main>
-        <div class="login information d-flex flex-column">
-            <h4>Hello, <span><?php echo "$_SESSION[fname] $_SESSION[lname]"; ?>!</span>
-            </h4>
-            <h5>Welcome to Realm Pubg</h5><br>
-            <h4>Here's your information:</h4>
-            <p>email: <span><?php echo "$_SESSION[email]"; ?></span></p>
-            <p>contact: <span><?php echo "$_SESSION[contact]"; ?></span></p>
-            <p>home address: <span><?php echo "$_SESSION[address]"; ?></span></p>
+    <main class="login-acc">
 
-            <button class="btn btn-success" onclick="window.location.href='/index.php#shop'">Shop now!</button>
-            <hr>
-            <h4>Account Management</h4>
-            <br>
-            <div class="d-flex justify-content-around flex-wrap">
-                <button class="btn btn-warning" onclick="window.location.href='/services/logout.php'">Logout</button>
-                <button class="btn btn-info" onclick="window.location.href='/pages/edit.php'">Edit Credentials</button>
-                <?php
-                if (Account::getAccess($_SESSION['id'])) {
-                    echo '<button class="btn btn-danger" onclick="window.location.href=' . '\'/pages/accounts.php\'' . '">Edit
-                    Accounts</button>';
-                }
-                ?>
-                <button class="btn btn-danger"
-                    onclick="window.location.href='/services/logout.php?delete&id=<?php echo $_SESSION['id'] ?>'">Delete
-                    Account</button>
-            </div>
+        <h4>Accounts List</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>contact</th>
+                        <th>address</th>
+                        <th>admin</th>
+                        <th>delete</th>
+                        <th>edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    $link = db_init();
+                    $res = mysqli_query($link, "SELECT * FROM accounts");
+
+                    while ($all = mysqli_fetch_array($res)) {
+                        echo "
+                        <tr>
+                            <td>", $all['id'], "</td>
+                            <td>", $all['firstname'], "</td>
+                            <td>", $all['lastname'], "</td>
+                            <td>", $all['email'], "</td>
+                            <td>", $all['contact'], "</td>
+                            <td>", $all['address'], "</td>
+                            <td>", $all['access'] ? 'YES' : 'NO', "</td>
+                            <td>", "<a href='/pages/edit.php?id=", $all['id'], "'><button type='button' class='btn btn-info'>Edit</button></a>", "</td>
+                            <td>", "<a href='/services/delete.php?id=", $all['id'], "'><button type='button' class='btn btn-danger'>Delete</button></a>", "</td>
+                        </tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
+
     </main>
-    <footer class=" page-footer">
+
+    <footer class="page-footer">
         <!-- TODO: ADD FOOTER -->
         <div class="container">
             <div class="row">

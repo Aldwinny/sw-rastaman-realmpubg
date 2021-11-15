@@ -10,7 +10,6 @@ if (isset($_GET['delete'], $_SESSION['email'])) {
     }
 }
 
-session_start();
 session_unset();
 
 session_destroy();

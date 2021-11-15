@@ -26,7 +26,7 @@ class Account
     {
         $link = db_init();
 
-        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, '$firstname', '$lastname', '$email', '$pass', '$contact', '$address')");
+        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, '$firstname', '$lastname', '$email', '$pass', '$contact', '$address', 0)");
     }
 
     static function delete($id)
@@ -43,6 +43,20 @@ class Account
         mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address' WHERE `id`='$id' AND `password`='$pass'");
     }
 
+    static function updateNoPass($id, $firstname, $lastname, $email, $contact, $address, $admin)
+    {
+        $link = db_init();
+
+        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address', `access`=$admin WHERE `id`='$id'");
+    }
+
+    static function updatePass($id, $firstname, $lastname, $email, $contact, $address, $pass, $admin)
+    {
+        $link = db_init();
+
+        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address', `password`='$pass', `access`=$admin WHERE `id`='$id'");
+    }
+
     static function get($id)
     {
         $link = db_init();
@@ -54,9 +68,9 @@ class Account
     static function list()
     {
         $link = db_init();
-        $res = mysqli_query($link, "SELECT * FROM accounts");
+        $res = mysqli_query($link, "SELECT * FROM `accounts`");
 
-        return mysqli_fetch_array($res);
+        return $res;
     }
 
     static function find($email, $pass)
@@ -73,5 +87,13 @@ class Account
         $query = "SELECT * FROM accounts WHERE email='$email'";
 
         return mysqli_query(db_init(), $query);
+    }
+
+    static function getAccess($id)
+    {
+        $link = db_init();
+        $res = mysqli_query($link, "SELECT * FROM accounts WHERE id=$id");
+
+        return mysqli_fetch_array($res)['access'];
     }
 }
