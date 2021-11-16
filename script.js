@@ -198,7 +198,7 @@ var item_map = {
     1: [
       "Aviator Googles",
       level.normal,
-      "/assets/items/eyes_aviatorgoggles.jpg",
+      "/assets/items/eyes_aviatorgoggles.png",
     ],
     2: [
       "Aviator Sunglasses",
