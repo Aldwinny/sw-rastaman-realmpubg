@@ -17,10 +17,13 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_
         exit();
     } else {
         $res = Account::search($email);
+        $resUs = Account::searchByUsername($uname);
 
         if (mysqli_num_rows($res) === 1) {
             header('location: /pages/login.php?reg&err=email already in use!');
             exit();
+        } else if (mysqli_num_rows($resUs) === 1) {
+            header('Location: /pages/login.php?reg&err=username already in use!');
         } else {
             Account::create($fname, $lname, $uname, $email, $pass, $contact, $address);
 

@@ -75,7 +75,6 @@ class Account
 
     static function find($email, $pass)
     {
-        $link = db_init();
         $query = "SELECT * FROM accounts WHERE email='$email' AND password='$pass'";
 
         return mysqli_query(db_init(), $query);
@@ -83,8 +82,14 @@ class Account
 
     static function search($email)
     {
-        $link = db_init();
         $query = "SELECT * FROM accounts WHERE email='$email'";
+
+        return mysqli_query(db_init(), $query);
+    }
+
+    static function searchByUsername($username)
+    {
+        $query = "SELECT * FROM accounts WHERE username='$username'";
 
         return mysqli_query(db_init(), $query);
     }
