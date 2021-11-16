@@ -22,11 +22,11 @@ function validate($data)
 class Account
 {
 
-    static function create($firstname, $lastname, $email, $pass, $contact, $address)
+    static function create($firstname, $lastname, $username, $email, $pass, $contact, $address)
     {
         $link = db_init();
 
-        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, '$firstname', '$lastname', '$email', '$pass', '$contact', '$address', 0)");
+        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, '$firstname', '$lastname', '$username','$email', '$pass', '$contact', '$address', 0)");
     }
 
     static function delete($id)
@@ -36,25 +36,25 @@ class Account
         mysqli_query($link, "DELETE FROM accounts WHERE id=$id");
     }
 
-    static function update($id, $firstname, $lastname, $email, $contact, $address, $pass)
+    static function update($id, $firstname, $lastname, $username, $email, $contact, $address, $pass)
     {
         $link = db_init();
 
-        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address' WHERE `id`='$id' AND `password`='$pass'");
+        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `username`='$username', `email`='$email', `contact`='$contact', `address`='$address' WHERE `id`='$id' AND `password`='$pass'");
     }
 
-    static function updateNoPass($id, $firstname, $lastname, $email, $contact, $address, $admin)
+    static function updateNoPass($id, $firstname, $lastname, $username, $email, $contact, $address, $admin)
     {
         $link = db_init();
 
-        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address', `access`=$admin WHERE `id`='$id'");
+        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `username`='$username', `email`='$email', `contact`='$contact', `address`='$address', `access`=$admin WHERE `id`='$id'");
     }
 
-    static function updatePass($id, $firstname, $lastname, $email, $contact, $address, $pass, $admin)
+    static function updatePass($id, $firstname, $lastname, $username, $email, $contact, $address, $pass, $admin)
     {
         $link = db_init();
 
-        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `contact`='$contact', `address`='$address', `password`='$pass', `access`=$admin WHERE `id`='$id'");
+        mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `username`='$username', `email`='$email', `contact`='$contact', `address`='$address', `password`='$pass', `access`=$admin WHERE `id`='$id'");
     }
 
     static function get($id)

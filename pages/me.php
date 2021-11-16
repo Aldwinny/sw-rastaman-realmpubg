@@ -44,14 +44,14 @@ if (!isset($_SESSION['email'])) {
                 </li>
                 <li class="nav-item">
                     <a href="/pages/me.php" class="nav-link"><span class="material-icons">account_circle</span>
-                        <?php echo " $_SESSION[fname]" ?></a>
+                        <?php echo "$_SESSION[uname]" ?></a>
                 </li>
             </ul>
         </div>
     </nav>
     <main>
         <div class="login information d-flex flex-column">
-            <h4>Hello, <span><?php echo "$_SESSION[fname] $_SESSION[lname]"; ?>!</span>
+            <h4>Hello, <span><?php echo "$_SESSION[uname]"; ?>!</span>
             </h4>
             <h5>Welcome to Realm Pubg</h5><br>
             <h4>Here's your information:</h4>
@@ -104,7 +104,7 @@ if (!isset($_SESSION['email'])) {
                     <h6 class="text-uppercase font-weight-bold">📞Contact us:</h6>
                     <p>
                         938 Aurora Blvd, Cubao, Quezon City, Metro Manila, Philippines
-                        <br />tipwebteam@tip.edu.ph <br />(+632) 8911-0964 / (+632)
+                        <br />RASTAMAN2022@tip.edu.ph<br />(+632) 8911-0964 / (+632)
                         8912-1573<br />
                     </p>
                 </div>

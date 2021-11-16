@@ -10,6 +10,7 @@ i<?php
 
         $fname = validate($_POST['fname']);
         $lname = validate($_POST['lname']);
+        $uname = validate($_POST['uname']);
         $email = validate($_POST['email']);
         $contact = validate($_POST['contact']);
         $address = validate($_POST['address']);
@@ -30,15 +31,16 @@ i<?php
                 $admin = isset($_POST['admin']) ? 1 : 0;
 
                 if (empty($pass)) {
-                    Account::updateNoPass($_GET['id'], $fname, $lname, $email, $contact, $address, $admin);
+                    Account::updateNoPass($_GET['id'], $fname, $lname, $uname, $email, $contact, $address, $admin);
                 } else {
-                    Account::updatePass($_GET['id'], $fname, $lname, $email, $contact, $address, $pass, $admin);
+                    Account::updatePass($_GET['id'], $fname, $lname, $uname, $email, $contact, $address, $pass, $admin);
                 }
 
                 if ($_GET['id'] == $_SESSION['id']) {
                     $_SESSION['email'] = $email;
                     $_SESSION['fname'] = $fname;
                     $_SESSION['lname'] = $lname;
+                    $_SESSION['uname'] = $uname;
                     $_SESSION['address'] = $address;
                     $_SESSION['contact'] = $contact;
                 }
@@ -50,10 +52,11 @@ i<?php
         }
     }
 
-    if (isset($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['contact'], $_POST['address'], $_POST['password'])) {
+    if (isset($_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_POST['contact'], $_POST['address'], $_POST['password'])) {
 
         $fname = validate($_POST['fname']);
         $lname = validate($_POST['lname']);
+        $uname = validate($_POST['uname']);
         $email = validate($_POST['email']);
         $contact = validate($_POST['contact']);
         $address = validate($_POST['address']);
@@ -74,11 +77,12 @@ i<?php
                     header("location: /pages/edit.php?err=Email already in use by another account!");
                     exit();
                 } else {
-                    Account::update($_SESSION['id'], $fname, $lname, $email, $contact, $address, $pass);
+                    Account::update($_SESSION['id'], $fname, $lname, $uname, $email, $contact, $address, $pass);
 
                     $_SESSION['email'] = $email;
                     $_SESSION['fname'] = $fname;
                     $_SESSION['lname'] = $lname;
+                    $_SESSION['uname'] = $uname;
                     $_SESSION['address'] = $address;
                     $_SESSION['contact'] = $contact;
 

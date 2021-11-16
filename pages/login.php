@@ -14,8 +14,7 @@ include '../services/db.php';
     <link rel="icon" href="/assets/icon/icon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <!-- JQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
 
@@ -50,48 +49,47 @@ include '../services/db.php';
                 <br>
 
                 <?php if (isset($_GET['reg'])) { ?>
-                <p>I want to <button type="button" id="reg" onclick="window.location.href='./login.php'">Login</button>
-                </p>
-                <?php if (isset($_GET["err"])) {
+                    <p>I want to <button type="button" id="reg" onclick="window.location.href='./login.php'">Login</button>
+                    </p>
+                    <?php if (isset($_GET["err"])) {
                         echo '<div class="err-msg">' . $_GET["err"] . '</div>';
                     } ?>
-                <div class="form-group">
-                    <label>First name:</label>
-                    <input name="fname" class="form-control" type="text" placeholder="Enter first name" />
-                    <label>Last name:</label>
-                    <input name="lname" class="form-control" type="text" placeholder="Enter last name" />
-                </div>
-                <div class="form-group">
-                    <label>Email Address:</label>
-                    <input name="email" class="form-control" type="email" placeholder="Enter Email Address" />
-                    <label>Contact:</label>
-                    <input name="contact" class="form-control" type="contact" placeholder="Enter Contact" />
-                    <label>Address:</label>
-                    <input name="address" class="form-control" type="address" placeholder="Enter Address" />
-                </div>
-                <div class="form-group">
-                    <label>Password:</label><br>
-                    <input name="password" class="form-control" type="password" placeholder="Enter password" />
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success">Create account</button>
+                    <div class="form-group">
+                        <label>First name:</label>
+                        <input name="fname" class="form-control" type="text" placeholder="Enter first name" />
+                        <label>Last name:</label>
+                        <input name="lname" class="form-control" type="text" placeholder="Enter last name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address:</label>
+                        <input name="email" class="form-control" type="email" placeholder="Enter Email Address" />
+                        <label>Contact:</label>
+                        <input name="contact" class="form-control" type="contact" placeholder="Enter Contact" />
+                        <label>Address:</label>
+                        <input name="address" class="form-control" type="address" placeholder="Enter Address" />
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label><br>
+                        <input name="password" class="form-control" type="password" placeholder="Enter password" />
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Create account</button>
                 <?php } else { ?>
-                <p>I want to <button type="button" id="reg"
-                        onclick="window.location.href='./login.php?reg'">Register</button>
-                </p>
-                <?php if (isset($_GET["err"])) {
+                    <p>I want to <button type="button" id="reg" onclick="window.location.href='./login.php?reg'">Register</button>
+                    </p>
+                    <?php if (isset($_GET["err"])) {
                         echo '<div class="err-msg">' . $_GET["err"] . '</div>';
                     } ?>
-                <div class="form-group">
-                    <label for="email">Login:</label><br>
-                    <input name="email" class="form-control" type="email" placeholder="Enter email" />
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label><br>
-                    <input name="password" class="form-control" type="password" placeholder="Enter password" />
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success">Submit</button>
+                    <div class="form-group">
+                        <label for="email">Login:</label><br>
+                        <input name="email" class="form-control" type="email" placeholder="Enter email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label><br>
+                        <input name="password" class="form-control" type="password" placeholder="Enter password" />
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 <?php } ?>
             </form>
         </div>
@@ -122,7 +120,7 @@ include '../services/db.php';
                     <h6 class="text-uppercase font-weight-bold">📞Contact us:</h6>
                     <p>
                         938 Aurora Blvd, Cubao, Quezon City, Metro Manila, Philippines
-                        <br />tipwebteam@tip.edu.ph <br />(+632) 8911-0964 / (+632)
+                        <br />RASTAMAN2022@tip.edu.ph<br />(+632) 8911-0964 / (+632)
                         8912-1573<br />
                     </p>
                 </div>
@@ -134,14 +132,11 @@ include '../services/db.php';
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="/script.js"></script>
 </body>

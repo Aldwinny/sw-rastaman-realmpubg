@@ -42,7 +42,7 @@ session_start();
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
                     <a href="/pages/me.php" class="nav-link"><span
-                            class="material-icons">account_circle</span><?php echo " $_SESSION[fname]" ?></a>
+                            class="material-icons">account_circle</span><?php echo "$_SESSION[uname]" ?></a>
                     <?php } else { ?>
                     <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
                         /
@@ -113,7 +113,7 @@ session_start();
                     <h6 class="text-uppercase font-weight-bold">📞Contact us:</h6>
                     <p>
                         938 Aurora Blvd, Cubao, Quezon City, Metro Manila, Philippines
-                        <br />tipwebteam@tip.edu.ph <br />(+632) 8911-0964 / (+632)
+                        <br />RASTAMAN2022@tip.edu.ph<br />(+632) 8911-0964 / (+632)
                         8912-1573<br />
                     </p>
                 </div>

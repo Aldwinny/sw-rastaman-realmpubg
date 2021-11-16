@@ -2,16 +2,17 @@
 
 include 'db.php';
 
-if (isset($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['contact'], $_POST['address'], $_POST['password'])) {
+if (isset($_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_POST['contact'], $_POST['address'], $_POST['password'])) {
 
     $fname = validate($_POST['fname']);
     $lname = validate($_POST['lname']);
+    $uname = validate($_POST['uname']);
     $email = validate($_POST['email']);
     $contact = validate($_POST['contact']);
     $address = validate($_POST['address']);
     $pass = validate($_POST['password']);
 
-    if (empty($fname) or empty($lname) or empty($email) or empty($contact) or empty($address) or empty($pass)) {
+    if (empty($fname) or empty($lname) or empty($uname) or empty($email) or empty($contact) or empty($address) or empty($pass)) {
         header('location: /pages/login.php?reg&err=incomplete credentials!');
         exit();
     } else {
@@ -21,7 +22,7 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['contact'], 
             header('location: /pages/login.php?reg&err=email already in use!');
             exit();
         } else {
-            Account::create($fname, $lname, $email, $pass, $contact, $address);
+            Account::create($fname, $lname, $uname, $email, $pass, $contact, $address);
 
             $res = Account::find($email, $pass);
             if (mysqli_num_rows($res) === 1) {
@@ -31,6 +32,7 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['contact'], 
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['fname'] = $row['firstname'];
                 $_SESSION['lname'] = $row['lastname'];
+                $_SESSION['uname'] = $row['username'];
                 $_SESSION['address'] = $row['address'];
                 $_SESSION['contact'] = $row['contact'];
                 $_SESSION['id'] = $row['id'];
@@ -58,6 +60,7 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['contact'], 
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['fname'] = $row['firstname'];
                 $_SESSION['lname'] = $row['lastname'];
+                $_SESSION['uname'] = $row['username'];
                 $_SESSION['address'] = $row['address'];
                 $_SESSION['contact'] = $row['contact'];
                 $_SESSION['id'] = $row['id'];

@@ -8,6 +8,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
 
     $fname = $acc['firstname'];
     $lname = $acc['lastname'];
+    $uname = $acc['username'];
     $email = $acc['email'];
     $contact = $acc['contact'];
     $address = $acc['address'];
@@ -17,6 +18,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
 
     $fname = $acc['firstname'];
     $lname = $acc['lastname'];
+    $uname = $acc['username'];
     $email = $acc['email'];
     $contact = $acc['contact'];
     $address = $acc['address'];
@@ -66,7 +68,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
                     <a href="/pages/me.php" class="nav-link"><span
-                            class="material-icons">account_circle</span><?php echo " $_SESSION[fname]" ?></a>
+                            class="material-icons">account_circle</span><?php echo "$_SESSION[uname]" ?></a>
                     <?php } else { ?>
                     <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
                         /
@@ -116,6 +118,9 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
                     <label>Last name:</label>
                     <input name="lname" class="form-control" type="text" placeholder="Enter last name"
                         value="<?php echo $lname ?>" />
+                    <label>Username:</label>
+                    <input name="uname" class="form-control" type="text" placeholder="Enter username"
+                        value="<?php echo $uname ?>" />
                 </div>
                 <div class="form-group">
                     <label>Email Address:</label>
@@ -179,7 +184,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
                     <h6 class="text-uppercase font-weight-bold">📞Contact us:</h6>
                     <p>
                         938 Aurora Blvd, Cubao, Quezon City, Metro Manila, Philippines
-                        <br />tipwebteam@tip.edu.ph <br />(+632) 8911-0964 / (+632)
+                        <br />RASTAMAN2022@tip.edu.ph<br />(+632) 8911-0964 / (+632)
                         8912-1573<br />
                     </p>
                 </div>
