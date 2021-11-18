@@ -6,6 +6,7 @@ var level = {
 };
 
 var item_map = {
+  // PUSH ALL TO DATABASE LESGAWWWW
   head: {
     1: ["Beanie", level.normal, "/assets/items/head_beanie.png"],
     2: ["Wacky Jacky", level.normal, "/assets/items/head_wackyjacky101.png"],
@@ -315,7 +316,7 @@ function generateCardsFrom(schema, etc) {
         <h4 class="card-title">${str[0] ?? "Card title"}</h4>
         ${
           etc ??
-          '<a class="btn btn-primary"><span class="material-icons">add_shopping_cart</span> Add to Cart</a>'
+          '<a class="btn btn-primary"><span class="material-icons">add_shopping_cart</span> Purchase</a>'
         } 
       </div>
     </div>`;
