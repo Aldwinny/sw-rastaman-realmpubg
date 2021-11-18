@@ -10,7 +10,7 @@ class Files
         $dir = Files::getUploadLink($depth);
 
         if (!Files::exists($depth, $filename)) {
-            return false; // File already exists with same name
+            return false; // File already exists with same name, try to save with another name
         }
     }
 

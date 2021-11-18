@@ -256,3 +256,37 @@ main.about-section > h2 {
 .title {
   color: grey;
 }
+
+.profile-wrapper {
+  align-self: center;
+}
+
+.profile-wrapper img {
+  width: 200px;
+  height: 200px;
+}
+
+.profile-wrapper div {
+  position: relative;
+  left: 130px;
+  bottom: 30px;
+  background-color: rgb(62, 218, 96);
+  width: 45px;
+  height: 45px;
+
+  transition-duration: 0.3s;
+}
+
+.profile-wrapper div:hover {
+  background-color: rgb(228, 76, 76);
+}
+
+.profile-wrapper div:active {
+  background-color: rgb(196, 52, 52);
+  transition-duration: 10ms;
+}
+
+.profile-wrapper span {
+  vertical-align: bottom;
+  user-select: none;
+}
