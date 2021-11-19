@@ -26,12 +26,21 @@ class Account
     {
         $link = db_init();
 
-        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, '$firstname', '$lastname', '$username','$email', '$pass', '$contact', '$address', 0)");
+        mysqli_query($link, "INSERT INTO `accounts` VALUES (NULL, NULL, '$firstname', '$lastname', '$username','$email', '$pass', '$contact', '$address', 0)");
     }
 
     static function delete($id)
     {
         $link = db_init();
+
+        $res = mysqli_fetch_array(mysqli_query($link, "SELECT * FROM accounts WHERE id=$id"));
+        if ($res['image'] != NULL) {
+            $chk = Files::load(1, $res['image']);
+
+            if ($chk != NULL) {
+                unlink($chk);
+            }
+        }
 
         mysqli_query($link, "DELETE FROM accounts WHERE id=$id");
     }
@@ -55,6 +64,20 @@ class Account
         $link = db_init();
 
         mysqli_query($link, "UPDATE accounts SET `firstname`='$firstname', `lastname`='$lastname', `username`='$username', `email`='$email', `contact`='$contact', `address`='$address', `password`='$pass', `access`=$admin WHERE `id`='$id'");
+    }
+
+    static function updateImage($id, $image) // IMPORTANT: Disposes of old image before uploading new image
+    {
+
+        $res = mysqli_fetch_array(mysqli_query(db_init(), "SELECT * FROM accounts WHERE id=$id"));
+        if ($res['image'] != NULL) {
+            $chk = Files::load(1, $res['image']);
+            if ($chk != NULL) {
+                unlink($chk);
+            }
+        }
+
+        mysqli_query(db_init(), "UPDATE accounts SET `image`='$image' WHERE `id`='$id'");
     }
 
     static function get($id)
@@ -100,5 +123,48 @@ class Account
         $res = mysqli_query($link, "SELECT * FROM accounts WHERE id=$id");
 
         return mysqli_fetch_array($res)['access'];
+    }
+}
+
+class Files
+{
+
+    static function load($depth, $filename)
+    {
+        $dir = Files::getUploadLink($depth);
+
+        if (!Files::exists($depth, $filename)) {
+            return null;
+        } else {
+            if (str_starts_with("$filename", "/uploads/")) {
+                return $dir . $filename;
+            } else {
+                return $dir . '/uploads/' . $filename;
+            }
+        }
+
+        // Prepares the link and then checks the file if it exists.
+    }
+
+    static function exists($depth, $filename)
+    {
+        $dir = Files::getUploadLink($depth);
+
+        if (str_starts_with("$filename", "/uploads/")) {
+            return file_exists($dir . $filename);
+        } else {
+            return file_exists($dir . '/uploads/' . $filename);
+        }
+    }
+
+    static function getUploadLink($depth)
+    {
+        $dir = ".";
+
+        for ($i = 0; $i < $depth; $i++) {
+            $dir = $dir . ".";
+        }
+
+        return $dir;
     }
 }

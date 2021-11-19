@@ -6,6 +6,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
     $admin = true;
     $acc = Account::get($_GET['id']);
 
+    $image = $acc['image'];
     $fname = $acc['firstname'];
     $lname = $acc['lastname'];
     $uname = $acc['username'];
@@ -16,6 +17,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
     $admin = false;
     $acc = Account::get($_SESSION['id']);
 
+    $image = $acc['image'];
     $fname = $acc['firstname'];
     $lname = $acc['lastname'];
     $uname = $acc['username'];
@@ -83,7 +85,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
 
             <form action="<?php if ($admin) { ?>/services/edit.php?id=<?php echo $_GET['id'];
                                                                     } else { ?>/services/edit.php<?php } ?>"
-                class="d-flex flex-column align-items-center" method="POST">
+                class="d-flex flex-column align-items-center" method="POST" enctype="multipart/form-data">
                 <img src="/assets/icon/icon+name.png" class="img-fluid" />
                 <br>
                 <p>You are editing <?php if ($admin and $_SESSION['id'] != $_GET['id']) {
@@ -104,6 +106,14 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
                 <?php if (isset($_GET["err"])) {
                     echo '<div class="err-msg">' . $_GET["err"] . '</div>';
                 } ?>
+                <div class="profile-wrapper">
+                    <img src="<?php echo $image ?? "/assets/floaters/default.jpg"; ?>" alt="my profile picture"
+                        class="rounded-circle">
+                </div>
+                <div class="form-group">
+                    <input type="file" name="image" accept="image/*">
+                </div>
+
                 <div class="form-group">
                     <?php if ($admin) {
                     ?>

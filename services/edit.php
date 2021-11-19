@@ -16,6 +16,14 @@ i<?php
         $address = validate($_POST['address']);
         $pass = validate($_POST['password']);
 
+        if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+            $tm = md5(time());
+            $fnm = $_FILES['image']['name'];
+            $dst = "../uploads/" . $tm . $fnm;
+            $image = "/uploads/" . $tm . $fnm;
+            move_uploaded_file($_FILES['image']['tmp_name'], $dst);
+        }
+
         if (empty($email)) {
             header("location: /pages/edit.php?id=" . $_GET['id'] . "&err=Email cannot be empty");
             exit();
@@ -49,12 +57,19 @@ i<?php
                 Account::updatePass($_GET['id'], $fname, $lname, $uname, $email, $contact, $address, $pass, $admin);
             }
 
+            if (isset($image)) {
+                // IMPORTANT: DISPOSES OF OLD IMAGE IF NOT NULL BEFORE STORING NEW IMAGE.
+                Account::updateImage($_GET['id'], $image);
+            }
+
+
             if ($_GET['id'] == $_SESSION['id']) {
                 $_SESSION['email'] = $email;
                 $_SESSION['fname'] = $fname;
                 $_SESSION['lname'] = $lname;
                 $_SESSION['uname'] = $uname;
                 $_SESSION['address'] = $address;
+                $_SESSION['image'] = $image;
                 $_SESSION['contact'] = $contact;
             }
 
@@ -73,6 +88,14 @@ i<?php
         $contact = validate($_POST['contact']);
         $address = validate($_POST['address']);
         $pass = validate($_POST['password']);
+
+        if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+            $tm = md5(time());
+            $fnm = $_FILES['image']['name'];
+            $dst = "../uploads/" . $tm . $fnm;
+            $image = "/uploads/" . $tm . $fnm;
+            move_uploaded_file($_FILES['image']['tmp_name'], $dst);
+        }
 
         if (empty($pass)) {
             header("location: /pages/edit.php?err=Enter password to confirm changes!");
@@ -101,6 +124,12 @@ i<?php
                 exit();
             }
             Account::update($_SESSION['id'], $fname, $lname, $uname, $email, $contact, $address, $pass);
+
+            if (isset($image)) {
+                // IMPORTANT: DISPOSES OF OLD IMAGE IF NOT NULL BEFORE STORING NEW IMAGE.
+                Account::updateImage($_SESSION['id'], $image);
+                $_SESSION['image'] = $image;
+            }
 
             $_SESSION['email'] = $email;
             $_SESSION['fname'] = $fname;

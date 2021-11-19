@@ -72,6 +72,7 @@ if (!Account::getAccess($_SESSION['id'])) {
                 <thead>
                     <tr>
                         <th>id</th>
+                        <th>image</th>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Username</th>
@@ -93,6 +94,7 @@ if (!Account::getAccess($_SESSION['id'])) {
                         echo "
                         <tr>
                             <td>", $all['id'], "</td>
+                            <td>", "<img src='" . ($all['image'] ?? '/assets/floaters/default.jpg') . "' width='100' height='100' alt='profile image of $all[username]'>", "</td>
                             <td>", $all['firstname'], "</td>
                             <td>", $all['lastname'], "</td>
                             <td>", $all['username'], "</td>

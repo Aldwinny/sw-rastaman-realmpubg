@@ -38,6 +38,7 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_
                 $_SESSION['uname'] = $row['username'];
                 $_SESSION['address'] = $row['address'];
                 $_SESSION['contact'] = $row['contact'];
+                $_SESSION['image'] = $row['image'];
                 $_SESSION['id'] = $row['id'];
                 header('Location: /index.php');
                 exit();
@@ -66,6 +67,7 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_
                 $_SESSION['uname'] = $row['username'];
                 $_SESSION['address'] = $row['address'];
                 $_SESSION['contact'] = $row['contact'];
+                $_SESSION['image'] = $row['image'];
                 $_SESSION['id'] = $row['id'];
 
                 header('Location: /index.php');
