@@ -1,31 +1,50 @@
 <?php
 
-include '../services/db.php';
+include '../services/db_products.php';
 
-if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
-    $admin = true;
-    $acc = Account::get($_GET['id']);
+if (!isset($_GET['product'])) {
+    if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
+        $admin = true;
+        $acc = Account::get($_GET['id']);
 
-    $image = $acc['image'];
-    $fname = $acc['firstname'];
-    $lname = $acc['lastname'];
-    $uname = $acc['username'];
-    $email = $acc['email'];
-    $contact = $acc['contact'];
-    $address = $acc['address'];
-} else if (isset($_SESSION['email'])) {
-    $admin = false;
-    $acc = Account::get($_SESSION['id']);
+        $image = $acc['image'];
+        $fname = $acc['firstname'];
+        $lname = $acc['lastname'];
+        $uname = $acc['username'];
+        $email = $acc['email'];
+        $contact = $acc['contact'];
+        $address = $acc['address'];
+    } else if (isset($_SESSION['email'])) {
+        $admin = false;
+        $acc = Account::get($_SESSION['id']);
 
-    $image = $acc['image'];
-    $fname = $acc['firstname'];
-    $lname = $acc['lastname'];
-    $uname = $acc['username'];
-    $email = $acc['email'];
-    $contact = $acc['contact'];
-    $address = $acc['address'];
+        $image = $acc['image'];
+        $fname = $acc['firstname'];
+        $lname = $acc['lastname'];
+        $uname = $acc['username'];
+        $email = $acc['email'];
+        $contact = $acc['contact'];
+        $address = $acc['address'];
+    } else {
+        header('Location: login.php?err=You are not logged in!');
+        exit();
+    }
 } else {
-    header('login.php?err=You are not logged in!');
+    if (Account::getAccess($_SESSION['id'])) {
+        if (isset($_GET['prodid'])) {
+            $pro = Products::get($_GET['prodid']);
+
+            $name = $pro['name'];
+            $description = $pro['description'];
+            $price = $pro['price'];
+            $image = $pro['image_link'];
+            $type = $pro['type'];
+            $rarity = $pro['rarity'];
+        }
+    } else {
+        header('Location: me.php');
+        exit();
+    }
 }
 ?>
 
@@ -49,7 +68,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
     <!-- Local CSS -->
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/login.css" />
-    <title>Login | Realm PUBG</title>
+    <title>Edit | Realm PUBG</title>
 </head>
 
 <body>
@@ -83,29 +102,85 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
     <main>
         <div class="login">
 
+            <?php if (isset($_GET['product'])) { ?>
+
+            <?php if (isset($_GET['prodid'])) { ?>
+            <form action="/services/edit.php?product&prodid=<?php echo $_GET['prodid'] ?>"
+                class="d-flex flex-column align-items-center" method="POST" enctype="multipart/form-data">
+                <div class="profile-wrapper">
+                    <img src="<?php echo $image ?? "/assets/floaters/default-product.jpg"; ?>"
+                        alt="default product photo" class="rounded-circle">
+                </div>
+                <div class="form-group">
+                    <input type="file" name="image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Product Name:</label>
+                    <input type="text" name="name" class="form-control" value="<?php echo $name ?>"
+                        placeholder="Product name">
+                    <label>Product Description:</label>
+                    <input type="text" name="description" class="form-control" value="<?php echo $description ?>"
+                        placeholder="Product Description">
+                    <label>Price:</label>
+                    <input type="number" name="price" class="form-control" value="<?php echo $price ?>"
+                        placeholder="Price (XX.XX)">
+                    <label>Type: </label>
+                    <input type="text" name="type" class="form-control" value="<?php echo $type ?>"
+                        placeholder="Product Type">
+                    <label>Rarity: </label>
+                    <input type="text" name="rarity" class="form-control" value="<?php echo $rarity ?>"
+                        placeholder="Product Rarity">
+                    <button type="submit" class="btn btn-danger">Apply Changes</button>
+                </div>
+            </form>
+            <?php  } else { ?>
+            <form action="/services/edit.php?product" class="d-flex flex-column align-items-center" method="POST"
+                enctype="multipart/form-data">
+                <div class="profile-wrapper">
+                    <img src="/assets/floaters/default-product.jpg" alt="default product photo" alt="my profile
+                    picture" class="rounded-circle">
+                </div>
+                <div class="form-group">
+                    <input type="file" name="image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Product Name:</label>
+                    <input type="text" name="name" class="form-control" placeholder="Product name">
+                    <label>Product Description:</label>
+                    <input type="text" name="description" class="form-control" placeholder="Product description">
+                    <label>Price:</label>
+                    <input type="number" name="price" class="form-control" placeholder="Price (XX.XX)">
+                    <label>Type: </label>
+                    <input type="text" name="type" class="form-control" placeholder="Product Type">
+                    <label>Rarity: </label>
+                    <input type="text" name="rarity" class="form-control" placeholder="Product Rarity">
+                </div>
+                <button type="submit" class="btn btn-info">Create</button>
+            </form>
+            <?php  } ?>
+            <?php } else { ?>
+
             <form action="<?php if ($admin) { ?>/services/edit.php?id=<?php echo $_GET['id'];
-                                                                    } else { ?>/services/edit.php<?php } ?>"
+                                                                        } else { ?>/services/edit.php<?php } ?>"
                 class="d-flex flex-column align-items-center" method="POST" enctype="multipart/form-data">
                 <img src="/assets/icon/icon+name.png" class="img-fluid" />
                 <br>
                 <p>You are editing <?php if ($admin and $_SESSION['id'] != $_GET['id']) {
-                                        echo "$fname" . "'s";
-                                    } else {
-                                        echo 'your';
-                                    } ?>
+                                            echo "$fname" . "'s";
+                                        } else {
+                                            echo 'your';
+                                        } ?>
                     credentials</p>
                 <?php
-                if ($admin and Account::getAccess($_GET['id'])) {
-                    echo '<div class="note-msg">This person has administrator priviledges!</div>';
-                } else if (!$admin && Account::getAccess($_SESSION['id'])) {
-                    echo '<div class="note-msg">You have administrator priviledges!</div>';
-                }
-
-
-                ?>
+                    if ($admin and Account::getAccess($_GET['id'])) {
+                        echo '<div class="note-msg">This person has administrator priviledges!</div>';
+                    } else if (!$admin && Account::getAccess($_SESSION['id'])) {
+                        echo '<div class="note-msg">You have administrator priviledges!</div>';
+                    }
+                    ?>
                 <?php if (isset($_GET["err"])) {
-                    echo '<div class="err-msg">' . $_GET["err"] . '</div>';
-                } ?>
+                        echo '<div class="err-msg">' . $_GET["err"] . '</div>';
+                    } ?>
                 <div class="profile-wrapper">
                     <img src="<?php echo $image ?? "/assets/floaters/default.jpg"; ?>" alt="my profile picture"
                         class="rounded-circle">
@@ -116,12 +191,12 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
 
                 <div class="form-group">
                     <?php if ($admin) {
-                    ?>
+                        ?>
                     <label>Id: </label>
                     <input name="id" class="form-control" type="text" placeholder="Enter ID"
                         value="<?php echo $_GET['id'] ?>" disabled />
                     <?php
-                    } ?>
+                        } ?>
                     <label>First name:</label>
                     <input name="fname" class="form-control" type="text" placeholder="Enter first name"
                         value="<?php echo $fname ?>" />
@@ -151,8 +226,8 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
                     <div class="form-check">
                         <input name="admin" type="checkbox" value="1" class="form-check-input" style="position:initial"
                             <?php if (Account::getAccess($_GET['id'])) {
-                                                                                                                                echo 'checked';
-                                                                                                                            } ?>>
+                                                                                                                                    echo 'checked';
+                                                                                                                                } ?>>
                         <label class="form-check-label">Admin priviledge</label>
                     </div>
                     <?php } else { ?>
@@ -166,6 +241,7 @@ if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
                     <br>
                     <button type="submit" class="btn btn-danger">Apply changes</button>
             </form>
+            <?php } ?>
         </div>
     </main>
     <footer class="page-footer">

@@ -72,8 +72,12 @@ if (!isset($_SESSION['email'])) {
                 <button class="btn btn-info" onclick="window.location.href='/pages/edit.php'">Edit Credentials</button>
                 <?php
                 if (Account::getAccess($_SESSION['id'])) {
-                    echo '<button class="btn btn-danger" onclick="window.location.href=' . '\'/pages/accounts.php\'' . '">Edit
-                    Accounts</button>';
+                ?>
+                <button class="btn btn-info" onclick="window.location.href='/pages/products.php'">Edit
+                    Products</button>
+                <button class="btn btn-danger" onclick="window.location.href='/pages/accounts.php'">Edit
+                    Accounts</button>
+                <?php
                 }
                 ?>
                 <button class="btn btn-danger"

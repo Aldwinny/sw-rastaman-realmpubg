@@ -1,9 +1,45 @@
 i<?php
-    include 'db.php';
+    include 'db_products.php';
 
     if (!isset($_SESSION['email'])) {
         header("location: /pages/login.php");
         exit();
+    }
+
+    if (isset($_GET['product']) and Account::getAccess($_SESSION['id'])) {
+        if (isset($_POST['name'], $_POST['description'], $_POST['price'], $_POST['type'], $_POST['rarity'])) {
+
+            $name = validate($_POST['name']);
+            $desc = validate($_POST['description']);
+            $price = validate($_POST['price']);
+            $type = strtolower(validate($_POST['type']));
+            $rarity = strtolower(validate($_POST['rarity']));
+
+            if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+                $fnm = $_FILES['image']['name'];
+                $dst = "../assets/items/" . $type . '_' . $fnm;
+                $image = "/assets/items/"  . $type . '_' . $fnm;
+                move_uploaded_file($_FILES['image']['tmp_name'], $dst);
+            }
+
+            if (isset($_GET['prodid'])) {
+                $prodid = $_GET['prodid'];
+
+                // EDIT
+                Products::set($prodid, $name, $desc, $price, $type, $rarity);
+                if (isset($image)) {
+                    Products::setImage($prodid, $image);
+                }
+            } else {
+                // CREATE
+                Products::add($name, $desc, $price, isset($image) ? $image : NULL, $type, $rarity);
+            }
+            header('Location: /pages/products.php');
+            exit();
+        } else {
+            header('Location: /pages/edit.php?product');
+            exit();
+        }
     }
 
     if (isset($_GET['id']) and Account::getAccess($_SESSION['id'])) {
