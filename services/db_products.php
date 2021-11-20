@@ -44,6 +44,22 @@ class Products
         return mysqli_fetch_array($res);
     }
 
+    static function ofType($type)
+    {
+        $link = db_init();
+
+        $res = mysqli_query($link, "SELECT * FROM products WHERE type=$type");
+
+        return $res;
+    }
+
+    static function listTypes()
+    {
+        $res = mysqli_query(db_init(), "SELECT DISTINCT `type` FROM `products`");
+
+        return $res;
+    }
+
     static function setImage($id, $image_link)
     {
         $link = db_init();
@@ -60,16 +76,3 @@ class Products
         mysqli_query($link, "UPDATE products SET `image_link`='$image_link' WHERE product_id=$id");
     }
 }
-/*
-if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
-    $tm = md5(time());
-    $fnm = $_FILES['image']['name'];
-    $dst = "../uploads/" . $tm . $fnm;
-    $image = "/uploads/" . $tm . $fnm;
-    move_uploaded_file($_FILES['image']['tmp_name'], $dst);
-}
-
-if (isset($image)) {
-    // IMPORTANT: DISPOSES OF OLD IMAGE IF NOT NULL BEFORE STORING NEW IMAGE.
-    Products::setImage($_GET['id'], $image);
-}*/

@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+include '../services/db_products.php'
 
 ?>
 
@@ -15,14 +16,14 @@ session_start();
     <link rel="icon" href="/assets/icon/icon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <!-- JQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/item.css" />
+
 </head>
 
 <body>
@@ -42,12 +43,11 @@ session_start();
                 </li>
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
-                    <a href="/pages/me.php" class="nav-link"><span
-                            class="material-icons">account_circle</span><?php echo "$_SESSION[uname]" ?></a>
+                        <a href="/pages/me.php" class="nav-link"><span class="material-icons">account_circle</span><?php echo "$_SESSION[uname]" ?></a>
                     <?php } else { ?>
-                    <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
-                        /
-                        Register</a>
+                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
+                            /
+                            Register</a>
                     <?php }  ?>
                 </li>
             </ul>
@@ -59,23 +59,25 @@ session_start();
             <h4>
                 Enjoy the quality and durability that our garments offer! All for you!
             </h4>
-            <form class="d-flex flex-column align-items-center">
+            <form action="./item.php" method="GET" class="d-flex flex-column align-items-center">
                 <fieldset>
-                    <label for="item">Select an item</label>
-                    <select name="item" id="item">
-                        <option>belt</option>
-                        <option>eye</option>
-                        <option>feet</option>
-                        <option>hand</option>
-                        <option selected="selected">head</option>
-                        <option>leg</option>
-                        <option>mask</option>
-                        <option>outer</option>
-                        <option>set</option>
-                        <option>torso</option>
+                    <label for="type">Select an item</label>
+                    <select name="type" id="item">
+                        <?php
+                        $types = Products::listTypes();
+
+                        if (isset($_GET['type'])) {
+                            while ($row = mysqli_fetch_array($types)) {
+                                echo "<option ", $row[0] == $_GET['type'] ? "selected" : "", ">$row[0]</option>";
+                            }
+                        } else {
+                            header('Location: ./item.php?type=head');
+                            exit();
+                        }
+                        ?>
                     </select>
                 </fieldset>
-                <input type="button" value="Apply" onclick="updateContext()" />
+                <input type="submit" value="Apply Changes" />
             </form>
         </div>
         <div class="
@@ -85,6 +87,39 @@ session_start();
           align-items-center
           card-parent
         " id="dynamic-parent">
+            <?php
+            if (isset($_GET['type'])) {
+                $type = $_GET['type'];
+
+                $res = mysqli_query(db_init(), "SELECT * FROM products WHERE `type`='$type'");
+
+                while ($row = mysqli_fetch_array($res)) {
+                    if ($row['rarity'] == "legend") {
+                        $rarity = "rgb(221, 211, 76)";
+                    } else if ($row['rarity'] == "epic") {
+                        $rarity = "rgb(209, 57, 240)";
+                    } else if ($row['rarity'] == "rare") {
+                        $rarity = "rgb(240, 176, 57)";
+                    } else {
+                        $rarity = "rgb(109, 245, 116)";
+                    }
+
+                    $img = $row['image_link'] ?? '/icon/icon.png';
+
+                    echo "<div class='card' style='border: 3px solid $rarity'>
+                        <img src='$img' alt='$row[name]' class='card-img-top' />
+                            <div class='card-body'>
+                                <h4 class='card-title'>$row[name]</h4>
+                                <a class='btn btn-primary'><span class='material-icons'>add_shopping_cart</span>$$row[price]</a>
+                            </div>
+                        </div>";
+                }
+            } else {
+                header('Location: ./item.php?type=head');
+                exit();
+            }
+
+            ?>
         </div>
     </main>
 
@@ -128,20 +163,12 @@ session_start();
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script src="../script.js"></script>
-    <script>
-    function updateContext() {
-        setContext(document.getElementById("item").value);
-        resolveContext();
-    }
-    </script>
+
 </body>
 
 </html>

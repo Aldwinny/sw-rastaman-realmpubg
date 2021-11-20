@@ -14,8 +14,7 @@ session_start();
     <link rel="icon" href="./assets/icon/icon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <!-- JQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
 
@@ -33,8 +32,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="/pages/item.php" class="nav-link" onclick="setContext('head')"><span
-                            class="material-icons">store</span> Shop</a>
+                    <a href="/pages/item.php?type=head" class="nav-link"><span class="material-icons">store</span> Shop</a>
                 </li>
                 <li class="nav-item">
                     <a href="/pages/aboutus.php" class="nav-link">
@@ -42,12 +40,11 @@ session_start();
                 </li>
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
-                    <a href="/pages/me.php" class="nav-link"><span
-                            class="material-icons">account_circle</span><?php echo " $_SESSION[uname]" ?></a>
+                        <a href="/pages/me.php" class="nav-link"><span class="material-icons">account_circle</span><?php echo " $_SESSION[uname]" ?></a>
                     <?php } else { ?>
-                    <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
-                        /
-                        Register</a>
+                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
+                            /
+                            Register</a>
                     <?php }  ?>
                 </li>
             </ul>
@@ -73,61 +70,61 @@ session_start();
             justify-content-around
             align-items-center
           ">
-                <a href="/pages/item.php" onclick="setContext('head')">
+                <a href="/pages/item.php?type=head">
                     <figure title="From stylish caps to sturdy helmets. We have the highest quality available">
                         <figcaption>Head</figcaption>
                         <img src="/assets/items/head_milihead.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('eye')">
+                <a href="/pages/item.php?type=eyes">
                     <figure title="See the world in style with our eyewear">
                         <figcaption>Eyes</figcaption>
                         <img src="/assets/items/eyes_punkglasses.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('mask')">
+                <a href="/pages/item.php?type=mask">
                     <figure title="Hide your true identity using our masks">
                         <figcaption>Mask</figcaption>
                         <img src="/assets/items/mask_gas.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('hand')">
+                <a href="/pages/item.php?type=hands">
                     <figure title="Gloves for a cleaner, better, work">
                         <figcaption>Hands</figcaption>
                         <img src="/assets/items/hands_combatgloves.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('belt')">
+                <a href="/pages/item.php?type=belt">
                     <figure title="Tighten your pants with passion">
                         <figcaption>Belt</figcaption>
                         <img src="/assets/items/belt_battle.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('torso')">
+                <a href="/pages/item.php?type=torso">
                     <figure title="The stylish things you wear up there">
                         <figcaption>Torso</figcaption>
                         <img src="/assets/items/torso_longsleeved.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('leg')">
+                <a href="/pages/item.php?type=legs">
                     <figure title="The stylish things you wear down there">
                         <figcaption>Legs</figcaption>
                         <img src="/assets/items/legs_baggybr.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('feet')">
+                <a href="/pages/item.php?type=feet">
                     <figure title="The stylish things you step the world with">
                         <figcaption>Feet</figcaption>
                         <img src="/assets/items/feet_schoolshoesb.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('outer')">
+                <a href="/pages/item.php?type=outer">
                     <figure title="All the high quality garments you'll ever need">
                         <figcaption>Outer</figcaption>
                         <img src="/assets/items/outer_blackhoodie.png" class="img-fluid" alt="Police cap" />
                     </figure>
                 </a>
-                <a href="/pages/item.php" onclick="setContext('set')">
+                <a href="/pages/item.php?type=set">
                     <figure title="An entire outfit. All in one!">
                         <figcaption>Set</figcaption>
                         <img src="/assets/items/set_goldrush.png" class="img-fluid" alt="Police cap" />
@@ -176,18 +173,15 @@ session_start();
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script src="./script.js"></script>
     <script>
-    $(function() {
-        $(document).tooltip();
-    });
+        $(function() {
+            $(document).tooltip();
+        });
     </script>
 </body>
 
