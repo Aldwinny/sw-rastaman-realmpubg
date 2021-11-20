@@ -1,6 +1,13 @@
 <?php
 
-include '../services/db_products.php'
+include '../services/db_products.php';
+
+if (!isset($_GET['type'])) {
+    header('Location: ./item.php?type=head');
+    exit();
+}
+
+$selected = $_GET['type'];
 
 ?>
 
@@ -8,7 +15,7 @@ include '../services/db_products.php'
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title><?php echo $selected; ?> | Realm PUBG </title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -16,7 +23,8 @@ include '../services/db_products.php'
     <link rel="icon" href="/assets/icon/icon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <!-- JQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
 
@@ -43,11 +51,12 @@ include '../services/db_products.php'
                 </li>
                 <li class="nav-item">
                     <?php if (isset($_SESSION['email'])) { ?>
-                        <a href="/pages/me.php" class="nav-link"><span class="material-icons">account_circle</span><?php echo "$_SESSION[uname]" ?></a>
+                    <a href="/pages/me.php" class="nav-link"><span
+                            class="material-icons">account_circle</span><?php echo "$_SESSION[uname]" ?></a>
                     <?php } else { ?>
-                        <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
-                            /
-                            Register</a>
+                    <a href="/pages/login.php" class="nav-link"><span class="material-icons">account_circle</span> Login
+                        /
+                        Register</a>
                     <?php }  ?>
                 </li>
             </ul>
@@ -66,13 +75,8 @@ include '../services/db_products.php'
                         <?php
                         $types = Products::listTypes();
 
-                        if (isset($_GET['type'])) {
-                            while ($row = mysqli_fetch_array($types)) {
-                                echo "<option ", $row[0] == $_GET['type'] ? "selected" : "", ">$row[0]</option>";
-                            }
-                        } else {
-                            header('Location: ./item.php?type=head');
-                            exit();
+                        while ($row = mysqli_fetch_array($types)) {
+                            echo "<option ", $row[0] == $selected ? "selected" : "", ">$row[0]</option>";
                         }
                         ?>
                     </select>
@@ -163,9 +167,11 @@ include '../services/db_products.php'
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
